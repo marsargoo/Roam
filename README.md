@@ -1,0 +1,3 @@
+ROAM is a gamified real-world exploration app built with React Native + Expo. Users physically visit nearby points of interest, complete location-based challenges (photo, reflection, social, discovery), and earn XP — but the real reward is the journal. Every conquest generates a new spread in a 3D interactive book that grows thicker with every adventure, capturing photos, written reflections, passport stamps, and achievement badges earned along the way.
+
+Built with Expo (bare workflow), Expo Router, Supabase, NativeWind, and React Native Reanimated v3 for the 3D page-flip animation at the core of the experience.
