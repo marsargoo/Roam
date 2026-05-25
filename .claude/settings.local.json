@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(node -e \"const p = require\\('C:/Projects/Roam/node_modules/nativewind/package.json'\\); console.log\\('NativeWind actual version:', p.version\\); console.log\\('peerDeps tailwindcss:', p.peerDependencies?.tailwindcss\\);\")"
-    ]
-  }
-}
