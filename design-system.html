@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROAM Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #FFFFFF;
+      color: #5A4A3A;
+      padding: 48px;
+      width: 1200px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    /* ── Section labels ── */
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #2E4A3A;
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid #DDD5C8;
+    }
+
+    /* ── Brand ── */
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .brand-icon {
+      width: 64px;
+      height: 64px;
+      background: #2E4A3A;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #2E4A3A;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── Color swatches ── */
+    .color-group-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #B0A090;
+      margin-bottom: 12px;
+      margin-top: 28px;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .swatch-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .swatch-name {
+      font-size: 10px;
+      font-weight: 600;
+      color: #5A4A3A;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+    }
+
+    .swatch-hex {
+      font-size: 10px;
+      font-weight: 400;
+      color: #B0A090;
+      font-family: 'DM Sans', monospace;
+    }
+
+    /* Neutrals row — smaller horizontal swatches */
+    .swatches-neutral {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .swatch-neutral .swatch-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 1px;
+      background: #DDD5C8;
+    }
+
+    /* ── Typography ── */
+    .font-hero {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 700;
+      color: #2E4A3A;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .font-hero-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: #B0A090;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    /* Type scale table */
+    .type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 52px 88px 40px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #F0EBE0;
+      gap: 12px;
+    }
+
+    .type-row:last-child { border-bottom: none; }
+
+    .type-label {
+      color: #5A4A3A;
+    }
+
+    .type-usage {
+      font-size: 12px;
+      color: #B0A090;
+    }
+
+    .type-size {
+      font-size: 12px;
+      color: #B0A090;
+      text-align: right;
+    }
+
+    .type-weight {
+      font-size: 12px;
+      color: #B0A090;
+      text-align: right;
+    }
+
+    .type-lh {
+      font-size: 12px;
+      color: #B0A090;
+      text-align: right;
+    }
+
+    /* Individual type styles */
+    .t-h1 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #2E4A3A; }
+    .t-h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: #2E4A3A; }
+    .t-h3 { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 600; color: #2E4A3A; }
+    .t-h4 { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 500; color: #2E4A3A; }
+    .t-body-lg { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 400; color: #5A4A3A; }
+    .t-body-md { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 400; color: #5A4A3A; }
+    .t-body-sm { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400; color: #5A4A3A; }
+    .t-caption  { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 400; color: #B0A090; }
+    .t-label    { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: #5A4A3A; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    /* Font family callout */
+    .font-families {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .font-pill {
+      background: #F0EBE0;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: #5A4A3A;
+    }
+
+    .font-pill span {
+      font-weight: 600;
+      color: #2E4A3A;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+
+    <!-- ── LEFT COLUMN ── -->
+    <div>
+
+      <div class="section-label">Brand</div>
+
+      <div class="brand-block">
+        <div class="brand-icon">🧭</div>
+        <div class="brand-name">ROAM</div>
+      </div>
+
+      <div class="section-label">Colors</div>
+
+      <!-- PRIMARY -->
+      <div class="color-group-label">Primary</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-box" style="background:#2E4A3A;"></div>
+          <div class="swatch-name">ROAM Forest</div>
+          <div class="swatch-hex">#2E4A3A</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background:#8B3A2A;"></div>
+          <div class="swatch-name">Terracotta</div>
+          <div class="swatch-hex">#8B3A2A</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background:#C8A878;"></div>
+          <div class="swatch-name">Amber</div>
+          <div class="swatch-hex">#C8A878</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background:#4A7A5A;"></div>
+          <div class="swatch-name">Sage</div>
+          <div class="swatch-hex">#4A7A5A</div>
+        </div>
+      </div>
+
+      <!-- SEMANTIC -->
+      <div class="color-group-label">Semantic</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-box" style="background:#4A7C59;"></div>
+          <div class="swatch-name">Conquest</div>
+          <div class="swatch-hex">#4A7C59</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background:#D4860A;"></div>
+          <div class="swatch-name">Warning</div>
+          <div class="swatch-hex">#D4860A</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background:#E8C547;"></div>
+          <div class="swatch-name">XP / Streak</div>
+          <div class="swatch-hex">#E8C547</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background:#C0392B;"></div>
+          <div class="swatch-name">Error</div>
+          <div class="swatch-hex">#C0392B</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-box" style="background:#5B8DB8;"></div>
+          <div class="swatch-name">Info</div>
+          <div class="swatch-hex">#5B8DB8</div>
+        </div>
+      </div>
+
+      <!-- NEUTRALS -->
+      <div class="color-group-label">Neutrals</div>
+      <div class="swatches swatches-neutral">
+        <div class="swatch swatch-neutral">
+          <div class="swatch-box" style="background:#5A4A3A;"></div>
+          <div class="swatch-name">Text Primary</div>
+          <div class="swatch-hex">#5A4A3A</div>
+        </div>
+        <div class="swatch swatch-neutral">
+          <div class="swatch-box" style="background:#B0A090;"></div>
+          <div class="swatch-name">Text Muted</div>
+          <div class="swatch-hex">#B0A090</div>
+        </div>
+        <div class="swatch swatch-neutral">
+          <div class="swatch-box" style="background:#E8F2E8; border:1px solid #DDD5C8;"></div>
+          <div class="swatch-name">On Dark</div>
+          <div class="swatch-hex">#E8F2E8</div>
+        </div>
+        <div class="swatch swatch-neutral">
+          <div class="swatch-box" style="background:#DDD5C8;"></div>
+          <div class="swatch-name">Border</div>
+          <div class="swatch-hex">#DDD5C8</div>
+        </div>
+        <div class="swatch swatch-neutral">
+          <div class="swatch-box" style="background:#F0EBE0; border:1px solid #DDD5C8;"></div>
+          <div class="swatch-name">Surface</div>
+          <div class="swatch-hex">#F0EBE0</div>
+        </div>
+        <div class="swatch swatch-neutral">
+          <div class="swatch-box" style="background:#FAF6EE; border:1px solid #DDD5C8;"></div>
+          <div class="swatch-name">Background</div>
+          <div class="swatch-hex">#FAF6EE</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── RIGHT COLUMN ── -->
+    <div>
+
+      <div class="section-label">Typography</div>
+
+      <div class="font-hero">Playfair</div>
+      <div class="font-hero-sub">
+        Playfair Display is a transitional serif with editorial<br>personality — used for display headings and journal titles.
+      </div>
+
+      <div class="font-families">
+        <div class="font-pill"><span>Playfair Display</span> — Headings</div>
+        <div class="font-pill"><span>DM Sans</span> — UI &amp; Body</div>
+      </div>
+
+      <div class="type-scale">
+
+        <div class="type-row">
+          <div class="type-label t-h1">H1</div>
+          <div class="type-usage">Page / Screen Title</div>
+          <div class="type-size">32px</div>
+          <div class="type-weight">Bold 700</div>
+          <div class="type-lh">1.2</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label t-h2">H2</div>
+          <div class="type-usage">Section / POI Title</div>
+          <div class="type-size">26px</div>
+          <div class="type-weight">SemiBold 600</div>
+          <div class="type-lh">1.2</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label t-h3">H3</div>
+          <div class="type-usage">Card / Challenge Title</div>
+          <div class="type-size">20px</div>
+          <div class="type-weight">SemiBold 600</div>
+          <div class="type-lh">1.3</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label t-h4">H4</div>
+          <div class="type-usage">Subheading / Tab Label</div>
+          <div class="type-size">17px</div>
+          <div class="type-weight">Medium 500</div>
+          <div class="type-lh">1.4</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label t-body-lg">Body Large</div>
+          <div class="type-usage">Primary content, reflections</div>
+          <div class="type-size">16px</div>
+          <div class="type-weight">Regular 400</div>
+          <div class="type-lh">1.6</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label t-body-md">Body Medium</div>
+          <div class="type-usage">Standard body text</div>
+          <div class="type-size">14px</div>
+          <div class="type-weight">Regular 400</div>
+          <div class="type-lh">1.6</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label t-body-sm">Body Small</div>
+          <div class="type-usage">Supporting / metadata</div>
+          <div class="type-size">13px</div>
+          <div class="type-weight">Regular 400</div>
+          <div class="type-lh">1.6</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label t-caption">Caption</div>
+          <div class="type-usage">Timestamps, fine print</div>
+          <div class="type-size">11px</div>
+          <div class="type-weight">Regular 400</div>
+          <div class="type-lh">1.4</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label t-label">Label</div>
+          <div class="type-usage">Buttons, tags, chips</div>
+          <div class="type-size">12px</div>
+          <div class="type-weight">SemiBold 600</div>
+          <div class="type-lh">1.0</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

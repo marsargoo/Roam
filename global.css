@@ -1,0 +1,213 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ROAM Design System — CSS Design Tokens
+   All tokens map to NativeWind utility classes.
+
+   Color class reference:
+     bg-{token}      bg-forest / bg-background / bg-surface …
+     text-{token}    text-forest / text-terracotta / text-text-primary …
+     border-{token}  border-forest / border-amber / border-border …
+
+   Font-family class reference (requires fonts loaded via useFonts):
+     font-display            PlayfairDisplay-Bold     (700)
+     font-display-semibold   PlayfairDisplay-SemiBold (600)
+     font-body               DMSans-Regular           (400)
+     font-body-medium        DMSans-Medium            (500)
+     font-body-semibold      DMSans-SemiBold          (600)
+
+   Font-size class reference:
+     text-h1  text-h2  text-h3  text-h4
+     text-body-lg  text-body-md  text-body-sm
+     text-caption  text-label
+═══════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── PRIMARY COLORS ──────────────────────────────────────────────────── */
+  --color-forest:     #2E4A3A; /* dark sage — headers, buttons, covers       */
+  --color-terracotta: #8B3A2A; /* warm red-brown — stamps, accents           */
+  --color-amber:      #C8A878; /* golden tan — borders, sticker outlines     */
+  --color-sage:       #4A7A5A; /* medium sage — secondary actions, tags      */
+
+  /* ── SEMANTIC COLORS ─────────────────────────────────────────────────── */
+  --color-conquest: #4A7C59; /* active conquest indicator                    */
+  --color-warning:  #D4860A; /* caution / expiry warnings                    */
+  --color-xp:       #E8C547; /* XP gain / streak highlights                  */
+  --color-error:    #C0392B; /* errors and destructive actions               */
+  --color-info:     #5B8DB8; /* informational callouts                       */
+
+  /* ── NEUTRAL COLORS ──────────────────────────────────────────────────── */
+  --color-text-primary: #5A4A3A; /* primary body text  → text-text-primary   */
+  --color-text-muted:   #B0A090; /* metadata / secondary → text-text-muted   */
+  --color-on-dark:      #E8F2E8; /* text on dark green  → text-on-dark       */
+  --color-border:       #DDD5C8; /* card / element borders                   */
+  --color-surface:      #F0EBE0; /* card fills, stamp backgrounds            */
+  --color-background:   #FAF6EE; /* app / screen background                  */
+
+  /* ── FONT FAMILIES ───────────────────────────────────────────────────── */
+  /* Values must match keys registered in useFonts() in app/_layout.tsx     */
+  --font-display:           'PlayfairDisplay-Bold';
+  --font-display-semibold:  'PlayfairDisplay-SemiBold';
+  --font-body:              'DMSans-Regular';
+  --font-body-medium:       'DMSans-Medium';
+  --font-body-semibold:     'DMSans-SemiBold';
+
+  /* ── FONT SIZES (type scale) ─────────────────────────────────────────── */
+  --text-h1:       32px; /* Page / Screen Title                              */
+  --text-h2:       26px; /* Section / POI Title                              */
+  --text-h3:       20px; /* Card / Challenge Title                           */
+  --text-h4:       17px; /* Subheading / Tab Label                           */
+  --text-body-lg:  16px; /* Primary content / reflections                    */
+  --text-body-md:  14px; /* Standard body text                               */
+  --text-body-sm:  13px; /* Supporting / metadata                            */
+  --text-caption:  11px; /* Timestamps / fine print                          */
+  --text-label:    12px; /* Buttons / tags / chips                           */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ROAM Single-Concept Utilities  (@utility)
+   Use these for ONE idea expressed as one class.
+   Unlike @layer components, @utility classes are first-class Tailwind
+   utilities — they work with ALL variants (e.g. active:flex-center).
+═══════════════════════════════════════════════════════════════════════════ */
+
+/** Center children along both axes — the most common layout in this app */
+@utility flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/** Horizontal row with vertically centered children */
+@utility row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/** Stretch a View to fill its positioned parent — used for overlays & journal layers */
+@utility absolute-fill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ROAM Component Utilities  (@layer components)
+   Multi-property patterns for whole UI elements.
+   BEM convention: .block, .block--modifier, .block__element
+═══════════════════════════════════════════════════════════════════════════ */
+
+@layer components {
+
+  /* ── journal ─────────────────────────────────────────────────────────── */
+
+  /** Full journal page surface */
+  .journal-page {
+    @apply bg-background rounded-2xl shadow-md;
+  }
+
+  /* ── btn ─────────────────────────────────────────────────────────────── */
+
+  /** Primary CTA — dark forest fill */
+  .btn-primary {
+    @apply bg-forest rounded-xl px-6 py-3 items-center justify-center;
+  }
+
+  /** Secondary action — outlined surface */
+  .btn-secondary {
+    @apply bg-surface rounded-xl px-6 py-3 items-center justify-center border border-border;
+  }
+
+  /** Ghost / text-only action */
+  .btn-ghost {
+    @apply rounded-xl px-6 py-3 items-center justify-center;
+  }
+
+  /* ── poi-card ────────────────────────────────────────────────────────── */
+
+  /** Standard POI card */
+  .poi-card {
+    @apply bg-surface rounded-2xl p-4 shadow-sm border border-amber/30;
+  }
+
+  /** Featured / daily highlight POI card */
+  .poi-card--featured {
+    @apply bg-surface rounded-2xl p-4 border-2 border-amber shadow-md;
+  }
+
+  /** Hidden gem variant */
+  .poi-card--gem {
+    @apply bg-surface rounded-2xl p-4 border border-conquest shadow-sm;
+  }
+
+  /* ── stamp ───────────────────────────────────────────────────────────── */
+
+  /** Unearned stamp outline */
+  .stamp {
+    @apply border-2 border-terracotta items-center justify-center;
+  }
+
+  /** Earned / filled stamp */
+  .stamp--filled {
+    @apply bg-surface border-2 border-amber items-center justify-center;
+  }
+
+  /* ── badge ───────────────────────────────────────────────────────────── */
+
+  /** Default rank / achievement badge */
+  .badge {
+    @apply bg-forest rounded-full px-3 py-1 items-center justify-center;
+  }
+
+  /** XP / streak badge */
+  .badge--xp {
+    @apply bg-xp rounded-full px-3 py-1 items-center justify-center;
+  }
+
+  /** Conquest badge */
+  .badge--conquest {
+    @apply bg-conquest rounded-full px-3 py-1 items-center justify-center;
+  }
+
+  /* ── tag ─────────────────────────────────────────────────────────────── */
+
+  /** Category tag / chip */
+  .tag {
+    @apply bg-surface border border-border rounded-full px-3 py-1;
+  }
+
+  /** Active / selected tag */
+  .tag--active {
+    @apply bg-forest border border-forest rounded-full px-3 py-1;
+  }
+
+  /* ── screen-header ───────────────────────────────────────────────────── */
+
+  /** Dark forest screen header band */
+  .screen-header {
+    @apply bg-forest px-6 pt-4 pb-6;
+  }
+
+  /* ── divider ─────────────────────────────────────────────────────────── */
+
+  .divider {
+    @apply h-px bg-border;
+  }
+
+  /* ── input ───────────────────────────────────────────────────────────── */
+
+  .input {
+    @apply bg-surface border border-border rounded-xl px-4 py-3;
+  }
+
+  .input--focused {
+    @apply bg-surface border border-forest rounded-xl px-4 py-3;
+  }
+
+}

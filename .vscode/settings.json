@@ -1,0 +1,5 @@
+{
+  // Tailwind v4 uses directives the built-in CSS linter doesn't know about:
+  // @theme, @utility, @layer, @apply — suppress the false-positive warnings.
+  "css.lint.unknownAtRules": "ignore"
+}
